@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="row">
+
+        <!-- LEFT SIDE -->
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                {% if worker.profile_image %}
+                    <img src="{{ worker.profile_image.url }}"
+                         class="card-img-top"
+                         style="height:320px; object-fit:cover;">
+                {% else %}
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e"
+                         class="card-img-top"
+                         style="height:320px; object-fit:cover;">
+                {% endif %}
+
+                <div class="card-body text-center">
+
+                    <h3 class="fw-bold">
+                        {{ worker.user.username }}
+                    </h3>
+
+                    <p class="text-muted">
+                        {{ worker.skills }}
+                    </p>
+
+                    <h5 class="text-warning">
+                        ★ {{ worker.rating }}
+                    </h5>
+
+                    <h4 class="fw-bold mt-3">
+                        ₹{{ worker.pricing }}
+                    </h4>
+
+                    <a href="/chat/{{ worker.user.id }}/"
+                        class="btn btn-dark w-100 mt-3">
+
+                        Chat & Fix Appointment
+
+                    </a>
+
+                    <a href="/book/{{ worker.id }}/"
+                       class="btn btn-outline-dark w-100 mt-2">
+
+                        Book Appointment
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="col-md-8">
+
+            <!-- ABOUT -->
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body">
+
+                    <h4 class="fw-bold mb-3">
+                        About Seller
+                    </h4>
+
+                    <p class="text-muted">
+                        {{ worker.about }}
+                    </p>
+
+                    <h6 class="fw-bold mt-4">
+                        Qualification
+                    </h6>
+
+                    <p class="text-muted">
+                        {{ worker.qualification }}
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- WORK IMAGE -->
+            {% if worker.work_image %}
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body">
+
+                    <h4 class="fw-bold mb-3">
+                        Previous Work
+                    </h4>
+
+                    <img src="{{ worker.work_image.url }}"
+                         class="img-fluid rounded">
+
+                </div>
+
+            </div>
+            {% endif %}
+
+            <!-- VIDEO -->
+            {% if worker.work_video %}
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body">
+
+                    <h4 class="fw-bold mb-3">
+                        Demo Video
+                    </h4>
+
+                    <video controls width="100%">
+                        <source src="{{ worker.work_video.url }}">
+                    </video>
+
+                </div>
+
+            </div>
+            {% endif %}
+
+            <!-- REVIEWS -->
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-body">
+
+                    <h4 class="fw-bold mb-4">
+                        Reviews
+                    </h4>
+
+                    {% for rating in ratings %}
+
+                    <div class="border-bottom pb-3 mb-3">
+
+                        <h6>
+                            {{ rating.buyer.username }}
+                        </h6>
+
+                        <p class="text-warning">
+                            ★ {{ rating.stars }}
+                        </p>
+
+                        <p class="text-muted">
+                            {{ rating.review }}
+                        </p>
+
+                    </div>
+
+                    {% empty %}
+
+                    <p class="text-muted">
+                        No reviews yet.
+                    </p>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,250 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="register-container">
+
+    <div class="register-card">
+        <h2>Create Account</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <select name="role" id="role" onchange="toggleSeller()">
+                <option value="buyer">Buyer</option>
+                <option value="seller">Seller</option>
+            </select>
+
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+
+            <div id="seller-section" style="display:none;">
+
+                <label>Skills</label>
+                <div class="skill-box">
+                    <input type="text" id="skillInput" placeholder="Type skill">
+                    <button type="button" onclick="addSkill()">➕</button>
+                    
+                </div>
+
+                <div id="skillsList"></div>
+                <input type="hidden" name="skills" id="skillsField">
+
+                <label>Resume</label>
+                <input type="file" name="resume">
+
+                <label>Portfolio</label>
+                <input type="file" name="portfolio">
+            </div>
+
+            <button class="submit-btn">Register</button>
+
+        </form>
+    </div>
+
+</div>
+<script>
+
+const allSkills = [
+
+    "Plumbing",
+    "Electrician",
+    "AC Repair",
+    "Painting",
+    "Carpenter",
+    "Gardening",
+    "Home Cleaning",
+    "Kitchen Cleaning",
+    "Bathroom Cleaning",
+    "Sofa Cleaning",
+    "Pest Control",
+    "WiFi Setup",
+    "Furniture Assembly",
+
+    "Photography",
+    "Wedding Photography",
+    "Portrait Photography",
+    "Product Photography",
+    "Photo Editing",
+
+    "Video Editing",
+    "Animation",
+    "Thumbnail Design",
+
+    "Logo Design",
+    "UI UX Design",
+    "Branding",
+    "Illustration",
+
+    "Web Development",
+    "Django Developer",
+    "React Developer",
+    "Full Stack Developer",
+    "WordPress",
+
+    "Machine Learning",
+    "Data Science",
+    "AI Automation",
+    "Chatbot Development",
+
+    "SEO",
+    "Social Media Marketing",
+    "Content Writing",
+    "Copywriting",
+
+    "Article Writing",
+    "Translation",
+    "Proofreading",
+
+    "Fitness Trainer",
+    "Yoga Trainer",
+    "Martial Arts Trainer",
+    "Dance Teacher",
+    "Drawing Teacher",
+    "Chess Coach"
+
+];
+
+let skills = [];
+
+function toggleSeller(){
+
+    let role =
+        document.getElementById("role").value;
+
+    document.getElementById("seller-section").style.display =
+        role === "seller"
+        ? "block"
+        : "none";
+
+}
+
+const skillInput =
+    document.getElementById("skillInput");
+
+const skillsList =
+    document.getElementById("skillsList");
+
+const skillsField =
+    document.getElementById("skillsField");
+
+/* AUTOCOMPLETE BOX */
+
+const suggestionBox =
+    document.createElement("div");
+
+suggestionBox.className =
+    "list-group position-absolute w-100 shadow-sm";
+
+suggestionBox.style.zIndex = "999";
+
+skillInput.parentNode.appendChild(suggestionBox);
+
+/* SHOW MATCHING SKILLS */
+
+skillInput.addEventListener("input", function(){
+
+    const value =
+        this.value.toLowerCase();
+
+    suggestionBox.innerHTML = "";
+
+    if(value.length === 0){
+        return;
+    }
+
+    const filtered =
+        allSkills.filter(skill =>
+            skill.toLowerCase().includes(value)
+        );
+
+    filtered.forEach(skill => {
+
+        const item =
+            document.createElement("button");
+
+        item.type = "button";
+
+        item.className =
+            "list-group-item list-group-item-action";
+
+        item.innerText = skill;
+
+        item.onclick = function(){
+
+            addSkill(skill);
+
+            suggestionBox.innerHTML = "";
+
+            skillInput.value = "";
+
+        };
+
+        suggestionBox.appendChild(item);
+
+    });
+
+});
+
+/* ADD SKILL */
+
+function addSkill(skillValue = null){
+
+    let skill =
+        skillValue || skillInput.value.trim();
+
+    if(skill === ""){
+        return;
+    }
+
+    if(skills.includes(skill)){
+        return;
+    }
+
+    skills.push(skill);
+
+    updateSkills();
+
+    skillInput.value = "";
+
+}
+
+/* UPDATE TAGS */
+
+function updateSkills(){
+
+    skillsList.innerHTML = "";
+
+    skills.forEach(skill => {
+
+        const tag =
+            document.createElement("span");
+
+        tag.className =
+            "badge bg-dark me-2 mb-2 p-2";
+
+        tag.style.cursor = "pointer";
+
+        tag.innerHTML =
+            `${skill} ✕`;
+
+        tag.onclick = function(){
+
+            skills =
+                skills.filter(s => s !== skill);
+
+            updateSkills();
+
+        };
+
+        skillsList.appendChild(tag);
+
+    });
+
+    skillsField.value =
+        skills.join(",");
+
+}
+
+</script>
+
+{% endblock %}

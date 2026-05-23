@@ -1,0 +1,96 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<div class="bg-dark text-white p-5 rounded"
+     style="background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f'); background-size:cover;">
+
+    <h1 class="display-5 fw-bold">Find the right service, right away</h1>
+
+    <!-- SEARCH BAR -->
+    <form method="GET" action="/workers/" class="mt-4">
+        <div class="input-group input-group-lg">
+            <input type="text" name="q" class="form-control" placeholder="Search for any service...">
+            <button class="btn btn-warning">Search</button>
+        </div>
+    </form>
+
+    <!-- QUICK TAGS -->
+    <div class="mt-4 d-flex flex-wrap gap-2">
+        <a href="/workers/?q=Plumbing" class="btn btn-outline-light btn-sm">Plumbing →</a>
+        <a href="/workers/?q=Electrician" class="btn btn-outline-light btn-sm">Electrician →</a>
+        <a href="/workers/?q=Gardening" class="btn btn-outline-light btn-sm">Gardening →</a>
+        <a href="/workers/?q=Cleaning" class="btn btn-outline-light btn-sm">Cleaning →</a>
+        <a href="/workers/?q=Painting" class="btn btn-outline-light btn-sm">Painting →</a>
+    </div>
+
+</div>
+
+<!-- POPULAR SERVICES -->
+<h3 class="mt-5 text-dark">Popular Services</h3>
+
+<div class="d-flex overflow-auto gap-3 pb-3">
+
+    <a href="/workers/?q=Photography" class="service-link">
+        <div class="service-card-fiverr">
+            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32">
+            <div class="overlay"></div>
+            <div class="service-text">Photography</div>
+        </div>
+    </a>
+
+    <a href="/workers/?q=Video Editing" class="service-link">
+        <div class="service-card-fiverr">
+            <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d">
+            <div class="overlay"></div>
+            <div class="service-text">Video Editing</div>
+        </div>
+    </a>
+
+    <a href="/workers/?q=Writing" class="service-link">
+        <div class="service-card-fiverr">
+            <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a">
+            <div class="overlay"></div>
+            <div class="service-text">Writing & Translation</div>
+        </div>
+    </a>
+
+    <a href="/workers/?q=Plumbing" class="service-link">
+        <div class="service-card-fiverr">
+            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952">
+            <div class="overlay"></div>
+            <div class="service-text">Plumbing</div>
+        </div>
+    </a>
+
+    <a href="/workers/?q=Electrician" class="service-link">
+        <div class="service-card-fiverr">
+            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837">
+            <div class="overlay"></div>
+            <div class="service-text">Electrician</div>
+        </div>
+    </a>
+
+    <a href="/workers/?q=Gardening" class="service-link">
+        <div class="service-card-fiverr">
+            <img src="https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e">
+            <div class="overlay"></div>
+            <div class="service-text">Gardening</div>
+        </div>
+    </a>
+
+    <a href="/workers/?q=Cleaning" class="service-link">
+        <div class="service-card-fiverr">
+            <img src="https://images.unsplash.com/photo-1585421514738-01798e348b17">
+            <div class="overlay"></div>
+            <div class="service-text">Cleaning</div>
+        </div>
+    </a>
+
+</div>
+
+
+
+{% endblock %}

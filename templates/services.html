@@ -1,0 +1,9 @@
+<h2>Services</h2>
+<ul>
+    {% for service in services %}
+        <li>
+            {{ service.name }}
+            <a href="/workers/">View Workers</a>
+        </li>
+    {% endfor %}
+</ul>

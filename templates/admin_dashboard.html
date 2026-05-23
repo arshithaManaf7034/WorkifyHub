@@ -1,0 +1,449 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid p-4 bg-light min-vh-100">
+
+    <!-- TOP HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-5">
+
+        <div>
+            <h2 class="fw-bold mb-1">
+                WorkifyHub Admin Dashboard
+            </h2>
+
+            <p class="text-muted">
+                Monitor platform growth, users, appointments, and marketplace activity
+            </p>
+        </div>
+
+        <div class="d-flex gap-3">
+
+            <a href="/dashboard/"
+               class="btn btn-outline-dark">
+
+                User Dashboard
+
+            </a>
+
+            <a href="/admin/"
+               class="btn btn-dark">
+
+                Django Admin
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ANALYTICS CARDS -->
+    <div class="row g-4 mb-5">
+
+        <!-- USERS -->
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+
+                        <div>
+
+                            <small class="text-muted">
+                                Total Users
+                            </small>
+
+                            <h2 class="fw-bold mt-2">
+                                {{ total_users }}
+                            </h2>
+
+                        </div>
+
+                        <div class="admin-icon bg-primary-subtle">
+                            👥
+                        </div>
+
+                    </div>
+
+                    <small class="text-success">
+                        Active platform members
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- SELLERS -->
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+
+                        <div>
+
+                            <small class="text-muted">
+                                Sellers
+                            </small>
+
+                            <h2 class="fw-bold mt-2">
+                                {{ total_sellers }}
+                            </h2>
+
+                        </div>
+
+                        <div class="admin-icon bg-success-subtle">
+                            🛠
+                        </div>
+
+                    </div>
+
+                    <small class="text-muted">
+                        Service providers registered
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BUYERS -->
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+
+                        <div>
+
+                            <small class="text-muted">
+                                Buyers
+                            </small>
+
+                            <h2 class="fw-bold mt-2">
+                                {{ total_buyers }}
+                            </h2>
+
+                        </div>
+
+                        <div class="admin-icon bg-warning-subtle">
+                            💼
+                        </div>
+
+                    </div>
+
+                    <small class="text-muted">
+                        Clients using the platform
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- APPOINTMENTS -->
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+
+                        <div>
+
+                            <small class="text-muted">
+                                Appointments
+                            </small>
+
+                            <h2 class="fw-bold mt-2">
+                                {{ total_appointments }}
+                            </h2>
+
+                        </div>
+
+                        <div class="admin-icon bg-danger-subtle">
+                            📅
+                        </div>
+
+                    </div>
+
+                    <small class="text-muted">
+                        Booking requests created
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SECOND ROW -->
+    <div class="row g-4 mb-5">
+
+        <!-- MARKETPLACE ACTIVITY -->
+        <div class="col-md-6">
+
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                <div class="card-body p-4">
+
+                    <h5 class="fw-bold mb-4">
+                        Marketplace Activity
+                    </h5>
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+
+                        <div>
+
+                            <h3 class="fw-bold">
+                                {{ total_jobs }}
+                            </h3>
+
+                            <small class="text-muted">
+                                Jobs Posted
+                            </small>
+
+                        </div>
+
+                        <div class="badge bg-dark fs-6">
+                            Live
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div>
+
+                            <h3 class="fw-bold">
+                                {{ total_reviews }}
+                            </h3>
+
+                            <small class="text-muted">
+                                Reviews Submitted
+                            </small>
+
+                        </div>
+
+                        <div class="badge bg-success">
+                            Positive Activity
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PLATFORM STATUS -->
+        <div class="col-md-6">
+
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                <div class="card-body p-4">
+
+                    <h5 class="fw-bold mb-4">
+                        Platform Status
+                    </h5>
+
+                    <div class="mb-4">
+
+                        <div class="d-flex justify-content-between mb-2">
+
+                            <span>
+                                System Health
+                            </span>
+
+                            <strong class="text-success">
+                                {{ system_health }}%
+                            </strong>
+
+                        </div>
+
+                        <div class="progress" style="height:8px;">
+
+                            <div class="progress-bar bg-success"
+                                 style="width: {{ system_health }}%;">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <div class="d-flex justify-content-between mb-2">
+
+                            <span>
+                                User Engagement
+                            </span>
+
+                            <strong class="text-primary">
+                                {{ user_engagement }}%
+                            </strong>
+
+                        </div>
+
+                        <div class="progress" style="height:8px;">
+
+                            <div class="progress-bar bg-primary"
+                                 style="width: {{ user_engagement }}%;">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div>
+
+                        <div class="d-flex justify-content-between mb-2">
+
+                            <span>
+                                Marketplace Activity
+                            </span>
+
+                            <strong class="text-warning">
+                                {{ marketplace_activity }}%
+                            </strong>
+
+                        </div>
+
+                        <div class="progress" style="height:8px;">
+
+                            <div class="progress-bar bg-warning"
+                                style="width: {{ marketplace_activity }}%">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- RECENT APPOINTMENTS -->
+    <div class="card border-0 shadow-sm rounded-4">
+
+        <div class="card-body p-4">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <h5 class="fw-bold">
+                    Recent Appointments
+                </h5>
+
+                <span class="badge bg-dark">
+                    Latest Activity
+                </span>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table align-middle">
+
+                    <thead class="table-light">
+
+                        <tr>
+
+                            <th>Buyer</th>
+                            <th>Seller</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for appointment in recent_appointments %}
+
+                        <tr>
+
+                            <td>
+                                {{ appointment.buyer.username }}
+                            </td>
+
+                            <td>
+                                {{ appointment.seller.user.username }}
+                            </td>
+
+                            <td>
+                                {{ appointment.booking_date }}
+                            </td>
+
+                            <td>
+                                {{ appointment.booking_time }}
+                            </td>
+
+                            <td>
+
+                                <span class="badge bg-warning text-dark">
+
+                                    {{ appointment.status }}
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+.admin-icon{
+    width:60px;
+    height:60px;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+}
+
+.card{
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+}
+
+</style>
+
+{% endblock %}

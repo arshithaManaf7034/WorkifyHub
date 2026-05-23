@@ -1,0 +1,806 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+
+    <!-- CATEGORY MENU -->
+    <!-- CATEGORY BAR -->
+
+<div class="fiverr-nav border-top border-bottom bg-white px-4">
+
+    <div class="d-flex gap-5 small text-dark py-3 position-relative">
+
+        <span class="nav-item-custom">Trending</span>
+
+        <!-- GRAPHICS -->
+        <div class="fiverr-dropdown-wrapper">
+
+            <span class="nav-item-custom">
+                Graphics & Design
+            </span>
+
+            <div class="fiverr-mega-menu">
+
+                <div class="mega-grid">
+
+                    <div>
+                        <h6>Logo & Brand Identity</h6>
+
+                        <a href="/workers/?q=Logo Design">Logo Design</a>
+
+                        <a href="/workers/?q=Branding">Brand Style Guides</a>
+
+                        <a href="/workers/?q=Business Card Design">Business Cards</a>
+
+                        <a href="/workers/?q=Typography">Typography</a>
+                    </div>
+
+                    <div>
+                        <h6>Web & App Design</h6>
+
+                        <a href="/workers/?q=Website Design">Website Design</a>
+
+                        <a href="/workers/?q=UI UX Design">UI/UX Design</a>
+
+                        <a href="/workers/?q=Landing Page Design">Landing Pages</a>
+
+                        <a href="/workers/?q=Icon Design">Icon Design</a>
+                    </div>
+
+                    <div>
+                        <h6>Art & Illustration</h6>
+
+                        <a href="/workers/?q=Illustration">Illustration</a>
+
+                        <a href="/workers/?q=NFT Art">NFT Art</a>
+
+                        <a href="/workers/?q=AI Art">AI Artists</a>
+
+                        <a href="/workers/?q=Comic Design">Comic Illustration</a>
+                    </div>
+
+                    <div>
+                        <h6>Visual Design</h6>
+
+                        <a href="/workers/?q=Photo Editing">Photo Editing</a>
+
+                        <a href="/workers/?q=Presentation Design">Presentation Design</a>
+
+                        <a href="/workers/?q=Thumbnail Design">Thumbnail Design</a>
+
+                        <a href="/workers/?q=Social Media Design">Social Media Design</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PROGRAMMING -->
+        <div class="fiverr-dropdown-wrapper">
+
+            <span class="nav-item-custom">
+                Programming & Tech
+            </span>
+
+            <div class="fiverr-mega-menu">
+
+                <div class="mega-grid">
+
+                    <div>
+                        <h6>Web Development</h6>
+
+                        <a href="/workers/?q=Django Developer">Django</a>
+
+                        <a href="/workers/?q=React Developer">React</a>
+
+                        <a href="/workers/?q=Full Stack Developer">Full Stack</a>
+
+                        <a href="/workers/?q=WordPress">WordPress</a>
+                    </div>
+
+                    <div>
+                        <h6>AI & Data</h6>
+
+                        <a href="/workers/?q=Machine Learning">Machine Learning</a>
+
+                        <a href="/workers/?q=Data Science">Data Science</a>
+
+                        <a href="/workers/?q=AI Automation">AI Automation</a>
+
+                        <a href="/workers/?q=Chatbot Development">Chatbots</a>
+                    </div>
+
+                    <div>
+                        <h6>Mobile Apps</h6>
+
+                        <a href="/workers/?q=Android Development">Android</a>
+
+                        <a href="/workers/?q=iOS Development">iOS</a>
+
+                        <a href="/workers/?q=Flutter Developer">Flutter</a>
+
+                        <a href="/workers/?q=React Native">React Native</a>
+                    </div>
+
+                    <div>
+                        <h6>Tech Support</h6>
+
+                        <a href="/workers/?q=Bug Fixing">Bug Fixing</a>
+
+                        <a href="/workers/?q=Cloud Deployment">Cloud Deployment</a>
+
+                        <a href="/workers/?q=Cyber Security">Cyber Security</a>
+
+                        <a href="/workers/?q=Server Setup">Server Setup</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- HOME SERVICES -->
+        <div class="fiverr-dropdown-wrapper">
+
+            <span class="nav-item-custom">
+                Home Services
+            </span>
+
+            <div class="fiverr-mega-menu">
+
+                <div class="mega-grid">
+
+                    <div>
+                        <h6>Repair Services</h6>
+
+                        <a href="/workers/?q=Plumbing">Plumbing</a>
+
+                        <a href="/workers/?q=Electrician">Electrician</a>
+
+                        <a href="/workers/?q=AC Repair">AC Repair</a>
+
+                        <a href="/workers/?q=Painting">Painting</a>
+                    </div>
+
+                    <div>
+                        <h6>Cleaning</h6>
+
+                        <a href="/workers/?q=Home Cleaning">Home Cleaning</a>
+
+                        <a href="/workers/?q=Kitchen Cleaning">outdoor Cleaning</a>
+
+                        <a href="/workers/?q=Bathroom Cleaning">Bathroom Cleaning</a>
+
+                        <a href="/workers/?q=Sofa Cleaning">furniture Cleaning</a>
+                    </div>
+
+                    <div>
+                        <h6>Utility</h6>
+
+                        <a href="/workers/?q=Gardening">Gardening</a>
+
+                        <a href="/workers/?q=Pest Control">Pest Control</a>
+
+                        <a href="/workers/?q=Furniture Assembly">Furniture Assembly</a>
+
+                        <a href="/workers/?q=WiFi Setup">WiFi Setup</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- PHOTOGRAPHY -->
+
+<div class="fiverr-dropdown-wrapper">
+
+    <span class="nav-item-custom">
+        Photography
+    </span>
+
+    <div class="fiverr-mega-menu">
+
+        <div class="mega-grid">
+
+            <div>
+
+                <h6>Event Photography</h6>
+
+                <a href="/workers/?q=Wedding Photography">
+                    Wedding Photography
+                </a>
+
+                <a href="/workers/?q=Birthday Photography">
+                    Birthday Photography
+                </a>
+
+                <a href="/workers/?q=Event Photography">
+                    Event Photography
+                </a>
+
+                <a href="/workers/?q=Outdoor Photography">
+                    Outdoor Photography
+                </a>
+
+            </div>
+
+            <div>
+
+                <h6>Studio Photography</h6>
+
+                <a href="/workers/?q=Portrait Photography">
+                    Portrait Photography
+                </a>
+
+                <a href="/workers/?q=Fashion Photography">
+                    Fashion Photography
+                </a>
+
+                <a href="/workers/?q=Product Photography">
+                    Product Photography
+                </a>
+
+                <a href="/workers/?q=Food Photography">
+                    Food Photography
+                </a>
+
+            </div>
+
+            <div>
+
+                <h6>Editing</h6>
+
+                <a href="/workers/?q=Photo Editing">
+                    Photo Editing
+                </a>
+
+                <a href="/workers/?q=Retouching">
+                    Retouching
+                </a>
+
+                <a href="/workers/?q=Color Correction">
+                    Color Correction
+                </a>
+
+                <a href="/workers/?q=Album Design">
+                    Album Design
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- SKILL TRAINERS -->
+
+<div class="fiverr-dropdown-wrapper">
+
+    <span class="nav-item-custom">
+        Skill Trainers
+    </span>
+
+    <div class="fiverr-mega-menu">
+
+        <div class="mega-grid">
+
+            <div>
+
+                <h6>Fitness & Sports</h6>
+
+                <a href="/workers/?q=Fitness Trainer">
+                    Fitness Trainer
+                </a>
+
+                <a href="/workers/?q=Yoga Trainer">
+                    Yoga Trainer
+                </a>
+
+                <a href="/workers/?q=Martial Arts Trainer">
+                    Martial Arts Trainer
+                </a>
+
+                <a href="/workers/?q=Personal Trainer">
+                    Personal Trainer
+                </a>
+
+            </div>
+
+            <div>
+
+                <h6>Arts & Creativity</h6>
+
+                <a href="/workers/?q=Dance Teacher">
+                    Dance Teacher
+                </a>
+
+                <a href="/workers/?q=Drawing Teacher">
+                    Drawing Teacher
+                </a>
+
+                <a href="/workers/?q=Painting Teacher">
+                    Painting Teacher
+                </a>
+
+                <a href="/workers/?q=Music Teacher">
+                    Music Teacher
+                </a>
+
+            </div>
+
+            <div>
+
+                <h6>Mind & Learning</h6>
+
+                <a href="/workers/?q=Chess Coach">
+                    Chess Coach
+                </a>
+
+                <a href="/workers/?q=Public Speaking Trainer">
+                    Public Speaking
+                </a>
+
+                <a href="/workers/?q=Communication Coach">
+                    Communication Coach
+                </a>
+
+                <a href="/workers/?q=Language Tutor">
+                    Language Tutor
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+    </div>
+
+</div>
+
+    <!-- WELCOME -->
+    <div class="mb-4">
+
+        <h3 class="fw-bold">
+            Welcome, {{ request.user.username }}
+        </h3>
+
+        <p class="text-muted">
+            Discover trusted professionals for your daily service needs.
+        </p>
+
+    </div>
+
+    <!-- DASHBOARD CARDS -->
+    <div class="row g-4 mb-5">
+
+        <!-- CARD 1 -->
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow-sm h-100 p-4 rounded-4">
+
+                <h5 class="fw-bold mb-2">
+                    Post a Job
+                </h5>
+
+                <p class="text-muted">
+                    Create a service request and receive offers from professionals.
+                </p>
+
+                <a href="/post-job/"
+                   class="btn btn-dark btn-sm mt-2">
+
+                    Create Request
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow-sm h-100 p-4 rounded-4">
+
+                <h5 class="fw-bold mb-2">
+                    Browse Workers
+                </h5>
+
+                <p class="text-muted">
+                    Explore top-rated workers based on skills and experience.
+                </p>
+
+                <a href="/workers/"
+                   class="btn btn-dark btn-sm mt-2">
+
+                    Explore
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow-sm h-100 p-4 rounded-4">
+
+                <h5 class="fw-bold mb-2">
+                    Profile Completion
+                </h5>
+
+                <p class="text-muted">
+                    Complete your profile to improve recommendations.
+                </p>
+
+                <div class="progress mt-2" style="height:8px;">
+
+                    <div class="progress-bar bg-dark"
+                         style="width:35%;">
+                    </div>
+
+                </div>
+
+                <small class="text-muted mt-2 d-block">
+                    35% completed
+                </small>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow-sm h-100 p-4 rounded-4">
+
+                <h5 class="fw-bold mb-2">
+                    Appointment Requests
+                </h5>
+
+                <p class="text-muted">
+                    Manage bookings from buyers and service requests.
+                </p>
+
+                <a href="/seller-appointments/"
+                   class="btn btn-dark btn-sm mt-2">
+
+                    View Appointments
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- POPULAR SERVICES -->
+    <div class="mb-3">
+
+        <h4 class="fw-bold">
+            Popular Services
+        </h4>
+
+    </div>
+
+    <div class="d-flex gap-3 overflow-auto pb-3">
+
+        <div class="service-card-fiverr">
+
+            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32">
+
+            <div class="overlay"></div>
+
+            <div class="service-text">
+                Photography
+            </div>
+
+        </div>
+
+        <div class="service-card-fiverr">
+
+            <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d">
+
+            <div class="overlay"></div>
+
+            <div class="service-text">
+                Video Editing
+            </div>
+
+        </div>
+
+        <div class="service-card-fiverr">
+
+            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952">
+
+            <div class="overlay"></div>
+
+            <div class="service-text">
+                Plumbing
+            </div>
+
+        </div>
+
+        <div class="service-card-fiverr">
+
+            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837">
+
+            <div class="overlay"></div>
+
+            <div class="service-text">
+                Electrical Services
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<style>
+    
+    .inbox-dropdown{
+
+    width:360px;
+
+    border:none;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.12);
+
+}
+
+.inbox-body{
+
+    max-height:420px;
+
+    overflow-y:auto;
+
+}
+
+.inbox-item{
+
+    transition:0.2s;
+
+}
+
+.inbox-item:hover{
+
+    background:#f7f7f7;
+
+}
+
+.message-avatar{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:#1dbf73;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:bold;
+
+    flex-shrink:0;
+
+}
+
+.nav-item-custom{
+    cursor:pointer;
+    font-weight:500;
+}
+
+.fiverr-dropdown-wrapper{
+    position:relative;
+}
+
+.fiverr-mega-menu{
+
+    position:absolute;
+
+    top:42px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:100vw;
+
+    max-width:1100px;
+
+    background:white;
+
+    padding:35px 40px;
+
+    border-radius:0 0 14px 14px;
+
+    display:none;
+
+    z-index:999;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+
+}
+.fiverr-dropdown-wrapper:hover .fiverr-mega-menu{
+    display:block;
+}
+
+.mega-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+    gap:40px;
+
+}
+
+.mega-grid h6{
+
+    font-weight:700;
+
+    margin-bottom:18px;
+
+    color:#222;
+
+}
+
+.mega-grid a{
+
+    display:block;
+
+    text-decoration:none;
+
+    color:#62646a;
+
+    margin-bottom:12px;
+
+    font-size:15px;
+
+    transition:0.2s;
+
+}
+
+.mega-grid a:hover{
+
+    color:#1dbf73;
+
+    transform:translateX(2px);
+
+}
+body{
+    overflow-x:hidden;
+}
+.profile-avatar{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:#1dbf73;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+}
+.service-link{
+
+    text-decoration:none;
+
+}
+
+.service-card-fiverr{
+
+    position:relative;
+
+    width:240px;
+
+    height:160px;
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+    flex-shrink:0;
+
+    cursor:pointer;
+
+    background:white;
+
+}
+
+.service-card-fiverr img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:0.4s;
+
+}
+
+.service-card-fiverr:hover img{
+
+    transform:scale(1.08);
+
+}
+
+.overlay{
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,0.7),
+        transparent
+    );
+
+}
+
+.service-text{
+
+    position:absolute;
+
+    bottom:15px;
+
+    left:15px;
+
+    color:white;
+
+    font-size:20px;
+
+    font-weight:700;
+
+}
+
+</style>
+
+{% endblock %}

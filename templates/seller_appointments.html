@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h3 class="fw-bold">
+            Appointment Requests
+        </h3>
+
+        <a href="/dashboard/"
+           class="btn btn-outline-dark btn-sm">
+
+            Back to Dashboard
+
+        </a>
+
+    </div>
+
+    {% if appointments %}
+
+        <div class="row g-4">
+
+            {% for appointment in appointments %}
+
+            <div class="col-md-6">
+
+                <div class="card border-0 shadow-sm p-4 rounded-4 mb-4">
+
+            <div class="d-flex justify-content-between">
+
+                <h4 class="fw-bold">
+
+                    {{ appointment.buyer.username }}
+
+                </h4>
+
+            <span class="badge bg-warning text-dark">
+
+                {{ appointment.status }}
+
+            </span>
+
+    </div>
+
+    <div class="mt-4">
+
+        <p>
+
+            <strong>Date:</strong>
+
+            {{ appointment.appointment_date }}
+
+        </p>
+
+        <p>
+
+            <strong>Time:</strong>
+
+            {{ appointment.appointment_time }}
+
+        </p>
+
+        <p>
+
+            <strong>Requirement:</strong>
+
+            {{ appointment.message }}
+
+        </p>
+
+    </div>
+
+    <!-- ACTIONS -->
+
+    <div class="d-flex gap-3 mt-4">
+
+        <a href="/accept-appointment/{{ appointment.id }}/"
+           class="btn btn-success">
+
+            Accept
+
+        </a>
+
+        <a href="/reject-appointment/{{ appointment.id }}/"
+           class="btn btn-outline-danger">
+
+            Reject
+
+        </a>
+
+    </div>
+
+    <small class="text-muted mt-3 d-block">
+
+        Requested on
+        {{ appointment.created_at }}
+
+    </small>
+
+</div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-body text-center p-5">
+
+                <h5 class="mb-3">
+                    No appointment requests
+                </h5>
+
+                <p class="text-muted">
+                    Booking requests from buyers will appear here.
+                </p>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

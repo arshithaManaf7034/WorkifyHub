@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>WorkifyHub</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        .brand-logo{
+
+    font-size:32px;
+
+    font-weight:800;
+
+    color:#0f172a !important;
+
+    letter-spacing:-1px;
+
+    font-family:'Trebuchet MS', sans-serif;
+
+}
+
+.navbar-search{
+
+    width:45%;
+
+}
+
+.search-input-navbar{
+
+    height:48px;
+
+    border-radius:12px 0 0 12px !important;
+
+    border:1px solid #ddd;
+
+    padding-left:18px;
+
+    font-size:15px;
+
+}
+
+.search-btn{
+
+    background:#1f2937;
+
+    color:white;
+
+    border-radius:0 12px 12px 0 !important;
+
+    padding:0 18px;
+
+}
+
+.search-btn:hover{
+
+    background:#111827;
+
+    color:white;
+
+}
+
+.nav-icon{
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    color:#111827;
+
+    transition:0.2s;
+
+}
+
+.nav-icon:hover{
+
+    color:#1dbf73;
+
+}
+
+.profile-avatar{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:50%;
+
+    background:#1dbf73;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+}
+
+.badge{
+
+    font-size:10px;
+
+    padding:5px 7px;
+
+}
+.inbox-dropdown{
+
+    width:340px;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+    border:none;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.12);
+
+}
+
+.inbox-body{
+
+    max-height:420px;
+
+    overflow-y:auto;
+
+}
+
+.message-avatar{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:#1dbf73;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:bold;
+
+    flex-shrink:0;
+
+}
+
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
+
+    <div class="container">
+
+        <!-- LOGO -->
+
+        <a class="navbar-brand brand-logo"
+           href="/">
+
+            WorkifyHub
+
+        </a>
+
+        {% if request.user.is_authenticated %}
+
+        <!-- SEARCH BAR -->
+
+        <div class="navbar-search mx-auto">
+
+            <form action="/workers/" method="GET">
+
+                <div class="input-group">
+
+                    <input type="text"
+                           name="q"
+                           class="form-control search-input-navbar"
+                           placeholder="What service are you looking for today?">
+
+                    <button class="btn search-btn">
+
+                        <i class="bi bi-search"></i>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+
+        <div class="d-flex align-items-center gap-4">
+
+            <!-- NOTIFICATION -->
+
+           <!-- NOTIFICATION -->
+
+<div class="dropdown">
+
+    <span class="nav-icon position-relative"
+          data-bs-toggle="dropdown">
+
+        <i class="bi bi-bell"></i>
+
+        {% if unread_notifications > 0 %}
+
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+
+            {{ unread_notifications }}
+
+        </span>
+
+        {% endif %}
+
+    </span>
+
+    <!-- DROPDOWN -->
+
+    <div class="dropdown-menu dropdown-menu-end inbox-dropdown p-0">
+
+        <!-- HEADER -->
+
+        <div class="p-3 border-bottom">
+
+            <h6 class="fw-bold mb-0">
+
+                Notifications
+
+            </h6>
+
+        </div>
+
+        <!-- BODY -->
+
+        <div class="inbox-body">
+
+            {% for appointment in notifications %}
+
+            <div class="p-3 border-bottom">
+
+                {% if appointment.status == "Accepted" %}
+
+                <div class="d-flex align-items-center">
+
+                    <div class="message-avatar me-3">
+
+                        ✓
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+
+                            Appointment Accepted
+
+                        </strong>
+
+                        <p class="small text-muted mb-0">
+
+                            {{ appointment.seller.user.username }}
+                            accepted your booking.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% elif appointment.status == "Rejected" %}
+
+                <div class="d-flex align-items-center">
+
+                    <div class="message-avatar me-3 bg-danger">
+
+                        ✕
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+
+                            Appointment Rejected
+
+                        </strong>
+
+                        <p class="small text-muted mb-0">
+
+                            {{ appointment.seller.user.username }}
+                            rejected your booking.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+            {% empty %}
+
+            <div class="text-center p-5">
+
+                <i class="bi bi-bell"
+                   style="font-size:50px;color:#ccc;"></i>
+
+                <h5 class="mt-3 text-muted">
+
+                    No notifications yet
+
+                </h5>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+            <!-- MESSAGE -->
+
+            <!-- MESSAGE -->
+
+<div class="dropdown">
+
+    <span class="nav-icon position-relative"
+          data-bs-toggle="dropdown">
+
+        <i class="bi bi-envelope"></i>
+
+        {% if unread_messages > 0 %}
+
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+
+            {{ unread_messages }}
+
+        </span>
+
+        {% endif %}
+
+    </span>
+
+    <!-- DROPDOWN -->
+
+    <div class="dropdown-menu dropdown-menu-end inbox-dropdown p-0">
+
+        <!-- HEADER -->
+
+        <div class="p-3 border-bottom">
+
+            <h6 class="fw-bold mb-0">
+
+                Inbox
+
+            </h6>
+
+        </div>
+
+        <!-- BODY -->
+
+        <div class="inbox-body">
+
+            {% for msg in recent_messages %}
+
+            <a href="/chat/{{ msg.sender.id }}/"
+               class="text-decoration-none text-dark">
+
+                <div class="d-flex align-items-start p-3 border-bottom">
+
+                    <div class="message-avatar me-3">
+
+                        {{ msg.sender.username|first|upper }}
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+
+                            {{ msg.sender.username }}
+
+                        </strong>
+
+                        <p class="small text-muted mb-0">
+
+                            {{ msg.message|truncatechars:35 }}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+            {% empty %}
+
+            <div class="text-center p-5">
+
+                <i class="bi bi-envelope"
+                   style="font-size:50px;color:#ccc;"></i>
+
+                <h5 class="mt-3 text-muted">
+
+                    No messages yet
+
+                </h5>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+            <!-- SAVED -->
+
+            <span class="nav-icon">
+
+                <i class="bi bi-heart"></i>
+
+            </span>
+
+            <!-- PROFILE -->
+
+            <div class="dropdown">
+
+                <div class="profile-avatar"
+                     data-bs-toggle="dropdown">
+
+                    {{ request.user.username|first|upper }}
+
+                </div>
+
+                <div class="dropdown-menu dropdown-menu-end">
+
+                    <a class="dropdown-item"
+                       href="/edit-profile/">
+
+                        Profile
+
+                    </a>
+
+                    <a class="dropdown-item"
+                       href="/seller-appointments/">
+
+                        Seller Appointments
+
+                    </a>
+
+                    <a class="dropdown-item"
+                       href="/buyer-appointments/">
+
+                        My Appointments
+
+                    </a>
+
+                    <a class="dropdown-item text-danger"
+                       href="/logout/">
+
+                        Logout
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <!-- LOGGED OUT -->
+
+        <div class="ms-auto">
+
+            <a class="btn btn-outline-dark me-2"
+               href="/login/">
+
+                Login
+
+            </a>
+
+            <a class="btn btn-warning"
+               href="/register/">
+
+                Join
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</nav>
+<!-- PAGE CONTENT -->
+
+<div class="container mt-4">
+
+    {% block content %}
+
+    {% endblock %}
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

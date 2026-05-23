@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="login-wrapper">
+
+    <div class="login-card">
+
+        <div class="text-center mb-4">
+
+            <h1 class="login-title">
+
+                Welcome Back
+
+            </h1>
+
+            <p class="text-muted">
+
+                Login to continue using WorkifyHub
+
+            </p>
+
+        </div>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <!-- USERNAME -->
+
+            <div class="mb-3">
+
+                <label class="form-label fw-bold">
+
+                    Username
+
+                </label>
+
+                <input type="text"
+                       name="username"
+                       class="form-control login-input"
+                       placeholder="Enter username">
+
+            </div>
+
+            <!-- PASSWORD -->
+
+            <div class="mb-4">
+
+                <label class="form-label fw-bold">
+
+                    Password
+
+                </label>
+
+                <input type="password"
+                       name="password"
+                       class="form-control login-input"
+                       placeholder="Enter password">
+
+            </div>
+
+            <!-- BUTTON -->
+
+            <button class="btn login-btn w-100">
+
+                Login
+
+            </button>
+
+        </form>
+
+        <!-- REGISTER -->
+
+        <div class="text-center mt-4">
+
+            <p class="text-muted">
+
+                Don't have an account?
+
+                <a href="/register/"
+                   class="register-link">
+
+                    Join Now
+
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+.login-wrapper{
+
+    min-height:85vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.login-card{
+
+    width:430px;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 40px rgba(0,0,0,0.08);
+
+}
+
+.login-title{
+
+    font-size:38px;
+
+    font-weight:800;
+
+    color:#0f172a;
+
+}
+
+.login-input{
+
+    height:52px;
+
+    border-radius:12px;
+
+    border:1px solid #d1d5db;
+
+    padding-left:15px;
+
+    font-size:15px;
+
+}
+
+.login-input:focus{
+
+    box-shadow:none;
+
+    border-color:#1dbf73;
+
+}
+
+.login-btn{
+
+    height:52px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#1dbf73;
+
+    color:white;
+
+    font-weight:700;
+
+    font-size:16px;
+
+    transition:0.3s;
+
+}
+
+.login-btn:hover{
+
+    background:#19a463;
+
+    color:white;
+
+}
+
+.register-link{
+
+    color:#1dbf73;
+
+    font-weight:700;
+
+    text-decoration:none;
+
+}
+
+.register-link:hover{
+
+    text-decoration:underline;
+
+}
+
+</style>
+
+{% endblock %}

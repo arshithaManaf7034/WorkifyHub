@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5 mb-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-body p-5">
+
+                    <h2 class="fw-bold mb-4">
+                        Edit Seller Profile
+                    </h2>
+
+                    <form method="POST"
+                          enctype="multipart/form-data">
+
+                        {% csrf_token %}
+
+                        <!-- PROFILE IMAGE -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Profile Picture
+                            </label>
+
+                            <input type="file"
+                                   name="profile_image"
+                                   class="form-control">
+
+                        </div>
+
+                        <!-- SKILLS -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Skills
+                            </label>
+
+                            <input type="text"
+                                   name="skills"
+                                   class="form-control"
+                                   value="{{ profile.skills }}">
+
+                        </div>
+
+                        <!-- EDUCATION -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Education
+                            </label>
+
+                            <input type="text"
+                                   name="education"
+                                   class="form-control"
+                                   value="{{ profile.education }}">
+
+                        </div>
+
+                        <!-- CERTIFICATION -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Skill Certification
+                            </label>
+
+                            <input type="text"
+                                   name="certification"
+                                   class="form-control"
+                                   value="{{ profile.certification }}">
+
+                        </div>
+
+                        <!-- EXPERIENCE -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Experience (Years)
+                            </label>
+
+                            <input type="number"
+                                   name="experience"
+                                   class="form-control"
+                                   value="{{ profile.experience }}">
+
+                        </div>
+
+                        <!-- PRICE -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Hourly Pricing
+                            </label>
+
+                            <input type="number"
+                                   name="price"
+                                   class="form-control"
+                                   value="{{ profile.price }}">
+
+                        </div>
+
+                        <!-- BIO -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                About
+                            </label>
+
+                            <textarea name="bio"
+                                      rows="5"
+                                      class="form-control">{{ profile.bio }}</textarea>
+
+                        </div>
+
+                        <!-- WORK IMAGE -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Work Sample Image
+                            </label>
+
+                            <input type="file"
+                                   name="work_image"
+                                   class="form-control">
+
+                        </div>
+
+                        <!-- VIDEO -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Intro Video
+                            </label>
+
+                            <input type="file"
+                                   name="intro_video"
+                                   class="form-control">
+
+                        </div>
+
+                        <!-- BUTTON -->
+
+                        <button class="btn btn-dark px-4 py-2">
+
+                            Save Profile
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

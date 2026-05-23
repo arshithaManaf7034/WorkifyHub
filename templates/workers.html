@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+
+<h3 class="fw-bold mb-4">
+    Search Results for "{{ query }}"
+</h3>
+
+<div class="row g-4">
+
+    {% for worker in workers %}
+
+    <div class="col-md-4">
+
+        <div class="card shadow-sm border-0 h-100">
+
+            <!-- IMAGE -->
+            {% if worker.profile_image %}
+
+<img src="{{ worker.profile_image.url }}"
+     class="card-img-top"
+     style="height:260px; object-fit:cover;">
+
+{% else %}
+
+<img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e"
+     class="card-img-top"
+     style="height:260px; object-fit:cover;">
+
+{% endif %}
+
+            <div class="card-body">
+
+                <!-- NAME -->
+                <h5>{{ worker.user.username }}</h5>
+
+                <!-- SKILLS -->
+                <p class="text-muted">
+                    {{ worker.skills }}
+                </p>
+
+                <!-- RATING -->
+                <p class="fw-bold text-warning">
+                    ⭐ {{ worker.rating }}
+                </p>
+
+                <!-- BUTTON -->
+               <a href="/worker/{{ worker.id }}/"
+                    class="btn btn-dark w-100 mt-3">
+
+                        View Profile
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <h5>No workers found.</h5>
+
+    {% endfor %}
+
+</div>
+
+
+</div>
+
+{% endblock %}

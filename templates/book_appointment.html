@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-body p-4">
+
+                    <h3 class="fw-bold mb-4">
+
+                        Book Appointment
+
+                    </h3>
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <label class="mb-2">
+
+                            Appointment Date
+
+                        </label>
+
+                        <input type="date"
+                               name="appointment_date"
+                               class="form-control mb-4"
+                               required>
+
+                        <label class="mb-2">
+
+                            Appointment Time
+
+                        </label>
+
+                        <input type="time"
+                               name="appointment_time"
+                               class="form-control mb-4"
+                               required>
+
+                        <label class="mb-2">
+
+                            Message
+
+                        </label>
+
+                        <textarea name="message"
+                                  class="form-control mb-4"
+                                  rows="4"
+                                  placeholder="Add appointment details"></textarea>
+
+                        <button class="btn btn-dark w-100">
+
+                            Confirm Appointment
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
