@@ -2,6 +2,21 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+class Skill(models.Model):
+
+    name = models.CharField(
+        max_length=100,
+        unique=True
+    )
+
+    category = models.CharField(
+        max_length=100,
+        blank=True
+    )
+
+    def __str__(self):
+
+        return self.name
 class UserProfile(models.Model):
 
     user = models.OneToOneField(
@@ -13,9 +28,10 @@ class UserProfile(models.Model):
         max_length=20
     )
 
-    skills = models.TextField(
-        blank=True
-    )
+    skills = models.ManyToManyField(
+    Skill,
+    blank=True
+)
 
     qualification = models.CharField(
         max_length=200,
@@ -102,9 +118,11 @@ class Job(models.Model):
         max_length=200
     )
 
-    category = models.CharField(
-        max_length=200
-    )
+    category = models.ForeignKey(
+    Skill,
+    on_delete=models.SET_NULL,
+    null=True
+)
 
     description = models.TextField()
 
@@ -242,3 +260,46 @@ class Review(models.Model):
     def __str__(self):
 
         return f"{self.buyer.username} reviewed {self.seller.user.username}"
+    
+class JobInterest(models.Model):
+
+    job = models.ForeignKey(
+        Job,
+        on_delete=models.CASCADE
+    )
+
+    seller = models.ForeignKey(
+        UserProfile,
+        on_delete=models.CASCADE
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    def __str__(self):
+
+        return f"{self.seller.user.username} -> {self.job.title}"
+class Notification(models.Model):
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
+
+    message = models.CharField(
+        max_length=300
+    )
+
+    is_read = models.BooleanField(
+        default=False
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    def __str__(self):
+
+        return self.message
+    

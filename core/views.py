@@ -3,28 +3,38 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 
-from .models import UserProfile, Job, Rating
-from .models import UserProfile, Job, Rating, Appointment
-from .models import UserProfile
-from .models import Message
+from django.http import JsonResponse
 
-
-
+from .models import (
+    UserProfile,
+    Job,
+    Rating,
+    Appointment,
+    Message,
+    Skill,
+    JobInterest
+)
 
 
 def home(request):
 
     return render(request, 'home.html')
 
-
 def register_view(request):
 
     if request.method == "POST":
 
         username = request.POST.get('username')
+        email = request.POST.get('email')
+
         password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+
         role = request.POST.get('role')
+
         skills = request.POST.get('skills', '')
+
+        # USERNAME EXISTS
 
         if User.objects.filter(username=username).exists():
 
@@ -36,23 +46,77 @@ def register_view(request):
                 }
             )
 
+        # EMAIL EXISTS
+
+        if User.objects.filter(email=email).exists():
+
+            return render(
+                request,
+                'register.html',
+                {
+                    'error': 'Email already exists'
+                }
+            )
+
+        # PASSWORD MATCH
+        print(password)
+        print(confirm_password)
+
+        if password != confirm_password:
+            print("PASSWORD CHECK FAILED")
+
+            return render(
+                request,
+                'register.html',
+                {
+                    'error': 'Passwords do not match'
+                }
+            )
+
+        # PASSWORD LENGTH
+
+        if len(password) < 6:
+
+            return render(
+                request,
+                'register.html',
+                {
+                    'error': 'Password must be at least 6 characters'
+                }
+            )
+
+        # CREATE USER
+
         user = User.objects.create_user(
             username=username,
+            email=email,
             password=password
         )
 
-        UserProfile.objects.create(
+        # CREATE PROFILE
+
+        profile = UserProfile.objects.create(
             user=user,
             role=role,
-            skills=skills
         )
+
+        if skills:
+
+            skill_names = skills.split(",")
+
+            for skill_name in skill_names:
+
+                skill_obj, created = Skill.objects.get_or_create(
+                    name=skill_name.strip()
+                )
+
+                profile.skills.add(skill_obj)
 
         login(request, user)
 
         return redirect('/dashboard/')
 
     return render(request, 'register.html')
-
 
 def login_view(request):
 
@@ -101,10 +165,12 @@ def logout_view(request):
 @login_required
 def dashboard(request):
 
-    profile = get_object_or_404(
-        UserProfile,
-        user=request.user
-    )
+    profile, created = UserProfile.objects.get_or_create(
+    user=request.user,
+    defaults={
+        'role': 'admin' if request.user.is_superuser else 'buyer'
+    }
+)
 
     # RECENT MESSAGES
 
@@ -124,6 +190,14 @@ def dashboard(request):
         status="Pending"
     ).order_by('-created_at')[:5]
 
+    matching_jobs = []
+
+    if profile.role == "seller":
+
+        matching_jobs = Job.objects.filter(
+            category__in=profile.skills.all()
+        ).order_by("-created_at")
+
     # DASHBOARD CONTEXT
 
     context = {
@@ -133,7 +207,8 @@ def dashboard(request):
         'recent_messages': recent_messages,
 
         'notifications': notifications,
-        'unread_messages': unread_messages
+        'unread_messages': unread_messages,
+        'matching_jobs': matching_jobs
 
     }
 
@@ -206,18 +281,39 @@ def post_job(request):
 
     if request.method == "POST":
 
-        Job.objects.create(
-            buyer=request.user,
-            title=request.POST.get('title'),
-            category=request.POST.get('category'),
-            description=request.POST.get('description'),
-            budget=request.POST.get('budget')
+        category_name = request.POST.get('category')
+
+        skill = Skill.objects.get(
+            name=category_name
         )
+        category_name = request.POST.get('category')
+
+        skill = Skill.objects.get(
+            name=category_name
+        )
+
+        print("BUDGET =", request.POST.get('budget'))
+        Job.objects.create(
+
+            buyer=request.user,
+
+            title=request.POST.get('title'),
+
+            category=skill,
+
+            description=request.POST.get('description'),
+
+            budget=request.POST.get('budget')
+
+        )
+        
 
         return redirect('/dashboard/')
 
-    return render(request, 'post_job.html')
-
+    return render(
+        request,
+        'post_job.html'
+    )
 
 @login_required
 def rate_worker(request, worker_id):
@@ -385,9 +481,7 @@ def edit_profile(request):
 
     if request.method == "POST":
 
-        profile.skills = request.POST.get(
-            'skills'
-        )
+        skills = request.POST.get('skills', '')
 
         profile.education = request.POST.get(
             'education'
@@ -423,11 +517,27 @@ def edit_profile(request):
 
         if request.FILES.get('intro_video'):
 
-            profile.intro_video = request.FILES.get(
-                'intro_video'
+            profile.work_video = request.FILES.get(
+                'work_video'
             )
 
         profile.save()
+
+        profile.skills.clear()
+
+        if skills:
+
+            for skill_name in skills.split(","):
+
+                skill_name = skill_name.strip()
+
+                if skill_name:
+
+                    skill_obj, created = Skill.objects.get_or_create(
+                        name=skill_name
+                    )
+
+                    profile.skills.add(skill_obj)
 
         return redirect('/dashboard/')
 
@@ -572,3 +682,84 @@ def check_notifications(request):
         'rejected': rejected
 
     })
+@login_required
+def profile_view(request):
+
+    profile = UserProfile.objects.get(
+        user=request.user
+    )
+
+    return render(
+        request,
+        'profile.html',
+        {
+            'profile': profile
+        }
+    )
+@login_required
+def show_interest(request, job_id):
+
+    profile = UserProfile.objects.get(
+        user=request.user
+    )
+
+    job = Job.objects.get(
+        id=job_id
+    )
+
+    JobInterest.objects.get_or_create(
+
+        job=job,
+
+        seller=profile
+
+    )
+
+    return redirect('/dashboard/')
+@login_required
+def buyer_jobs(request):
+
+    jobs = Job.objects.filter(
+        buyer=request.user
+    ).order_by('-created_at')
+
+    return render(
+        request,
+        'buyer_jobs.html',
+        {
+            'jobs': jobs
+        }
+    )
+@login_required
+def buyer_jobs(request):
+
+    jobs = Job.objects.filter(
+        buyer=request.user
+    ).order_by('-created_at')
+
+    return render(
+        request,
+        'buyer_jobs.html',
+        {
+            'jobs': jobs
+        }
+    )
+@login_required
+def job_interests(request, job_id):
+
+    job = Job.objects.get(
+        id=job_id
+    )
+
+    interests = JobInterest.objects.filter(
+        job=job
+    )
+
+    return render(
+        request,
+        'job_interests.html',
+        {
+            'job': job,
+            'interests': interests
+        }
+    )

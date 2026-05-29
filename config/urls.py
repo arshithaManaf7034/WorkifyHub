@@ -87,6 +87,32 @@ urlpatterns = [
     'check-notifications/',
     views.check_notifications
 ),
+path(
+    'profile/',
+    views.profile_view,
+    name='profile'
+),
+path(
+    'show-interest/<int:job_id>/',
+    views.show_interest,
+    name='show_interest'
+),
+
+path(
+    'buyer-jobs/',
+    views.buyer_jobs,
+    name='buyer_jobs'
+),
+path(
+    'buyer-jobs/',
+    views.buyer_jobs,
+    name='buyer_jobs'
+),
+path(
+    'job-interests/<int:job_id>/',
+    views.job_interests,
+    name='job_interests'
+),
 ]
 
 

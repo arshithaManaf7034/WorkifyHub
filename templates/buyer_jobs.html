@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="mb-4">
+
+        My Posted Jobs
+
+    </h2>
+
+    {% for job in jobs %}
+
+    <div class="card mb-3">
+
+        <div class="card-body">
+
+            <h4>
+
+                {{ job.title }}
+
+            </h4>
+
+            <p>
+
+                Budget ₹{{ job.budget }}
+
+            </p>
+
+            <a
+                href="/job-interests/{{ job.id }}/"
+                class="btn btn-dark"
+            >
+                View Interested Sellers
+            </a>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

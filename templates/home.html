@@ -27,70 +27,236 @@
     </div>
 
 </div>
-
 <!-- POPULAR SERVICES -->
-<h3 class="mt-5 text-dark">Popular Services</h3>
 
-<div class="d-flex overflow-auto gap-3 pb-3">
+<div class="mt-5">
 
-    <a href="/workers/?q=Photography" class="service-link">
-        <div class="service-card-fiverr">
-            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32">
-            <div class="overlay"></div>
-            <div class="service-text">Photography</div>
-        </div>
-    </a>
+    <div class="d-flex justify-content-between align-items-center mb-4">
 
-    <a href="/workers/?q=Video Editing" class="service-link">
-        <div class="service-card-fiverr">
-            <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d">
-            <div class="overlay"></div>
-            <div class="service-text">Video Editing</div>
-        </div>
-    </a>
+        <h2 class="fw-bold">
+            Popular Services
+        </h2>
 
-    <a href="/workers/?q=Writing" class="service-link">
-        <div class="service-card-fiverr">
-            <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a">
-            <div class="overlay"></div>
-            <div class="service-text">Writing & Translation</div>
-        </div>
-    </a>
+    </div>
 
-    <a href="/workers/?q=Plumbing" class="service-link">
-        <div class="service-card-fiverr">
-            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952">
-            <div class="overlay"></div>
-            <div class="service-text">Plumbing</div>
-        </div>
-    </a>
+    <div class="popular-services-container">
 
-    <a href="/workers/?q=Electrician" class="service-link">
-        <div class="service-card-fiverr">
-            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837">
-            <div class="overlay"></div>
-            <div class="service-text">Electrician</div>
-        </div>
-    </a>
+        <!-- Photography -->
 
-    <a href="/workers/?q=Gardening" class="service-link">
-        <div class="service-card-fiverr">
-            <img src="https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e">
-            <div class="overlay"></div>
-            <div class="service-text">Gardening</div>
-        </div>
-    </a>
+        <a href="/workers/?q=Photography"
+           class="service-link">
 
-    <a href="/workers/?q=Cleaning" class="service-link">
-        <div class="service-card-fiverr">
-            <img src="https://images.unsplash.com/photo-1585421514738-01798e348b17">
-            <div class="overlay"></div>
-            <div class="service-text">Cleaning</div>
-        </div>
-    </a>
+            <div class="service-card-fiverr">
+
+                <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32">
+                <div class="overlay"></div>
+
+                <div class="service-text">
+
+                    Photography
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- Video Editing -->
+
+        <a href="/workers/?q=Video Editing"
+           class="service-link">
+
+            <div class="service-card-fiverr">
+
+                <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d">
+
+                <div class="overlay"></div>
+
+                <div class="service-text">
+
+                    Video Editing
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- Writing -->
+
+        <a href="/workers/?q=Writing"
+           class="service-link">
+
+            <div class="service-card-fiverr">
+
+                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a">
+
+                <div class="overlay"></div>
+
+                <div class="service-text">
+
+                    Writing & Translation
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- Plumbing -->
+
+        <a href="/workers/?q=Plumbing"
+           class="service-link">
+
+            <div class="service-card-fiverr">
+
+                <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952">
+
+                <div class="overlay"></div>
+
+                <div class="service-text">
+
+                    Plumbing
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- Electrician -->
+
+        <a href="/workers/?q=Electrician"
+           class="service-link">
+
+            <div class="service-card-fiverr">
+
+                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837">
+
+                <div class="overlay"></div>
+
+                <div class="service-text">
+
+                    Electrician
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- Gardening -->
+
+        <a href="/workers/?q=Gardening"
+           class="service-link">
+
+            <div class="service-card-fiverr">
+
+                <img src="https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e">
+
+                <div class="overlay"></div>
+
+                <div class="service-text">
+
+                    Gardening
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- Cleaning -->
+
+        <a href="/workers/?q=Cleaning"
+           class="service-link">
+
+            <div class="service-card-fiverr">
+
+                <img src="https://images.unsplash.com/photo-1585421514738-01798e348b17">
+
+                <div class="overlay"></div>
+
+                <div class="service-text">
+
+                    Cleaning
+
+                </div>
+
+            </div>
+
+        </a>
+
+    </div>
 
 </div>
+<style>
+   .popular-services-container{
+    display:flex;
+    gap:20px;
+    overflow-x:auto;
+    padding-bottom:10px;
+}
 
+.popular-services-container::-webkit-scrollbar{
+    display:none;
+}
 
+.service-card-fiverr{
+    width:260px;
+    height:170px;
+    border-radius:15px;
+    overflow:hidden;
+    flex-shrink:0;
+    position:relative;
+    box-shadow:0 5px 18px rgba(0,0,0,0.15);
+    transition:0.4s;
+}
+
+.service-card-fiverr img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:0.4s;
+}
+
+.service-card-fiverr:hover{
+    transform:translateY(-5px);
+}
+
+.service-card-fiverr:hover img{
+    transform:scale(1.1);
+}
+
+.overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.35);
+}
+
+.service-text{
+    position:absolute;
+    bottom:15px;
+    left:15px;
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    z-index:2;
+}
+
+.service-link{
+    text-decoration:none;
+    color:inherit;
+}
+</style>
 
 {% endblock %}

@@ -12,6 +12,7 @@
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
+
         .brand-logo{
 
     font-size:32px;
@@ -160,6 +161,65 @@
     font-weight:bold;
 
     flex-shrink:0;
+
+    /* POPULAR SERVICES SECTION */
+
+.service-card-fiverr{
+    position: relative;
+    width: 260px;
+    height: 160px;
+    border-radius: 15px;
+    overflow: hidden;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: 0.4s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.service-card-fiverr img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:0.4s;
+}
+
+.service-card-fiverr:hover img{
+    transform:scale(1.1);
+}
+
+.overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,0.7),
+        rgba(0,0,0,0.2)
+    );
+}
+
+.service-text{
+    position:absolute;
+    bottom:15px;
+    left:15px;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    z-index:10;
+}
+
+.popular-services-container{
+    display:flex;
+    gap:20px;
+    overflow-x:auto;
+    padding-bottom:10px;
+}
+
+.popular-services-container::-webkit-scrollbar{
+    display:none;
+}
 
 }
 
@@ -348,9 +408,9 @@
 
 </div>
 
-            <!-- MESSAGE -->
+    
 
-            <!-- MESSAGE -->
+            
 
 <div class="dropdown">
 
@@ -469,11 +529,10 @@
                 <div class="dropdown-menu dropdown-menu-end">
 
                     <a class="dropdown-item"
-                       href="/edit-profile/">
+                       href="/profile/">
 
                         Profile
 
-                    </a>
 
                     <a class="dropdown-item"
                        href="/seller-appointments/">
@@ -488,6 +547,13 @@
                         My Appointments
 
                     </a>
+                    <a class="dropdown-item"
+                        href="/buyer-jobs/">
+
+                        My posted jobs
+
+                    </a>
+                    
 
                     <a class="dropdown-item text-danger"
                        href="/logout/">

@@ -486,20 +486,162 @@
 
     </div>
 
-    <!-- POPULAR SERVICES -->
-    <div class="mb-3">
+  
+{% if profile.role == "seller" %}
+ <!-- JOBS THAT MIGHT SUIT YOU -->
 
-        <h4 class="fw-bold">
-            Popular Services
-        </h4>
+    <h2 class="mb-4">
+        Jobs That Might Suit You
+    </h2>
+    <div class="row">
+
+    {% for job in matching_jobs %}
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card shadow-sm h-100">
+
+            <div class="card-body">
+
+                <h5 class="card-title">
+
+                    {{ job.title }}
+
+                </h5>
+
+                <p class="text-muted">
+
+                    {{ job.category.name }}
+
+                </p>
+
+                <p>
+
+                    Budget:
+                    ₹{{ job.budget }}
+
+                </p>
+
+                <button
+                    class="btn btn-dark"
+                    data-bs-toggle="modal"
+                    data-bs-target="#jobModal{{ job.id }}"
+                >
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
 
     </div>
 
-    <div class="d-flex gap-3 overflow-auto pb-3">
+    <!-- Modal -->
+
+    <div
+        class="modal fade"
+        id="jobModal{{ job.id }}"
+        tabindex="-1"
+    >
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title">
+
+                        {{ job.title }}
+
+                    </h5>
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                    ></button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <p>
+
+                        {{ job.description }}
+
+                    </p>
+
+                    <hr>
+
+                    <p>
+
+                        Budget:
+                        ₹{{ job.budget }}
+
+                    </p>
+
+                    <p>
+
+                        Category:
+                        {{ job.category.name }}
+
+                    </p>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <a href="/show-interest/{{ job.id }}/"
+                        class="btn btn-success">
+
+                            Show Interest
+
+                    </a>
+                     
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="alert alert-info">
+
+        No matching jobs found yet.
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+ <!-- POPULAR SERVICES -->
+
+{% else %}
+<div class="mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2 class="fw-bold popular-title">
+            Popular Services
+        </h2>
+
+    </div>
+
+    <div class="popular-services-container">
+
+        <!-- CARD 1 -->
 
         <div class="service-card-fiverr">
 
-            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32">
+            <img
+                src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32"
+                alt="Photography">
 
             <div class="overlay"></div>
 
@@ -509,9 +651,14 @@
 
         </div>
 
+
+        <!-- CARD 2 -->
+
         <div class="service-card-fiverr">
 
-            <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d">
+            <img
+                src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d"
+                alt="Video Editing" >
 
             <div class="overlay"></div>
 
@@ -521,9 +668,14 @@
 
         </div>
 
+
+        <!-- CARD 3 -->
+
         <div class="service-card-fiverr">
 
-            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952">
+            <img
+                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952"
+                alt="Plumbing" >
 
             <div class="overlay"></div>
 
@@ -533,9 +685,14 @@
 
         </div>
 
+
+        <!-- CARD 4 -->
+
         <div class="service-card-fiverr">
 
-            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837">
+            <img
+                src="https://images.unsplash.com/photo-1581092160562-40aa08e78837"
+                alt="Electrical" >
 
             <div class="overlay"></div>
 
@@ -548,7 +705,7 @@
     </div>
 
 </div>
-
+{% endif %}
 
 <style>
     
@@ -726,16 +883,37 @@ body{
     text-decoration:none;
 
 }
+/* POPULAR SERVICES CONTAINER */
+
+.popular-services-container{
+
+    display:flex;
+
+    gap:20px;
+
+    overflow-x:auto;
+
+    padding-bottom:10px;
+
+    scrollbar-width:none;
+
+}
+
+.popular-services-container::-webkit-scrollbar{
+
+    display:none;
+
+}
 
 .service-card-fiverr{
 
     position:relative;
 
-    width:240px;
+    width:260px;
 
-    height:160px;
+    height:170px;
 
-    border-radius:14px;
+    border-radius:15px;
 
     overflow:hidden;
 
@@ -744,6 +922,10 @@ body{
     cursor:pointer;
 
     background:white;
+
+    transition:0.4s;
+
+    box-shadow:0 4px 15px rgba(0,0,0,0.15);
 
 }
 
@@ -759,9 +941,15 @@ body{
 
 }
 
+.service-card-fiverr:hover{
+
+    transform:translateY(-5px);
+
+}
+
 .service-card-fiverr:hover img{
 
-    transform:scale(1.08);
+    transform:scale(1.1);
 
 }
 

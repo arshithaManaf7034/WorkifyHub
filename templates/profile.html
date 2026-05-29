@@ -1,0 +1,259 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+
+
+<div class="row g-4">
+
+    <!-- LEFT PROFILE CARD -->
+
+    <div class="col-lg-4">
+
+        <div class="card border-0 shadow-sm">
+
+            {% if profile.profile_image %}
+            <img
+                src="{{ profile.profile_image.url }}"
+                class="card-img-top"
+                style="height:350px; object-fit:cover;"
+            >
+            {% else %}
+            <img
+                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43"
+                class="card-img-top"
+                style="height:350px; object-fit:cover;"
+            >
+            {% endif %}
+
+            <div class="card-body text-center">
+
+                <h2 class="fw-bold">
+                    {{ profile.user.username }}
+                </h2>
+
+                <div class="mb-3">
+
+                    <span class="text-warning fw-bold">
+                        ★ {{ profile.rating }}
+                    </span>
+
+                </div>
+
+                <h3 class="fw-bold">
+                    ₹{{ profile.price }}
+                </h3>
+
+                <p class="text-muted">
+                    Starting Price
+                </p>
+
+                <hr>
+
+                <div>
+
+                    {% for skill in profile.skills.all %}
+
+                        <span class="badge bg-dark me-1 mb-2">
+
+                            {{ skill.name }}
+
+                        </span>
+
+                    {% empty %}
+
+                        <span class="text-muted">
+
+                            No skills listed
+
+                        </span>
+
+                    {% endfor %}
+
+                </div>
+
+                <div class="d-grid mt-4">
+
+                    <a
+                        href="/edit-profile/"
+                        class="btn btn-warning btn-lg"
+                    >
+                    
+                    Edit Profile
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT CONTENT -->
+
+    <div class="col-lg-8">
+
+        <!-- ABOUT -->
+
+        <div class="card shadow-sm border-0 mb-4">
+
+            <div class="card-body">
+
+                <h3 class="fw-bold mb-3">
+                    About Seller
+                </h3>
+
+                <p>
+
+                    {{ profile.bio|default:"No description added yet." }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- EXPERIENCE -->
+
+        <div class="card shadow-sm border-0 mb-4">
+
+            <div class="card-body">
+
+                <h3 class="fw-bold mb-3">
+                    Experience
+                </h3>
+
+                <p>
+
+                    {{ profile.experience }}
+                    Years Experience
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- EDUCATION -->
+
+        <div class="card shadow-sm border-0 mb-4">
+
+            <div class="card-body">
+
+                <h3 class="fw-bold mb-3">
+                    Education
+                </h3>
+
+                <p>
+
+                    {{ profile.education|default:"Not provided" }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- CERTIFICATION -->
+
+        <div class="card shadow-sm border-0 mb-4">
+
+            <div class="card-body">
+
+                <h3 class="fw-bold mb-3">
+                    Certifications
+                </h3>
+
+                <p>
+
+                    {{ profile.certification|default:"Not provided" }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- PORTFOLIO -->
+
+        {% if profile.work_image %}
+
+        <div class="card shadow-sm border-0 mb-4">
+
+            <div class="card-body">
+
+                <h3 class="fw-bold mb-3">
+                    Portfolio
+                </h3>
+
+                <img
+                    src="{{ profile.work_image.url }}"
+                    class="img-fluid rounded"
+                >
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+        <!-- REVIEWS -->
+
+        <div class="card shadow-sm border-0">
+
+            <div class="card-body">
+
+                <h3 class="fw-bold mb-3">
+                    Reviews
+                </h3>
+
+                {% for review in reviews %}
+
+                    <div class="border-bottom pb-3 mb-3">
+
+                        <strong>
+
+                            {{ review.buyer.username }}
+
+                        </strong>
+
+                        <br>
+
+                        <span class="text-warning">
+
+                            ★ {{ review.stars }}
+
+                        </span>
+
+                        <p class="mt-2">
+
+                            {{ review.review }}
+
+                        </p>
+
+                    </div>
+
+                {% empty %}
+
+                    <p class="text-muted">
+
+                        No reviews yet.
+
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</div>
+
+{% endblock %}

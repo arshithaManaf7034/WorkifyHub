@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="fw-bold mb-4">
+
+        Interested Sellers
+
+    </h2>
+
+    <h5 class="mb-4">
+
+        {{ job.title }}
+
+    </h5>
+
+    {% for interest in interests %}
+
+    <div class="card shadow-sm mb-3">
+
+        <div class="card-body">
+
+            <h4>
+
+                {{ interest.seller.user.username }}
+
+            </h4>
+
+            <p>
+
+                Rating:
+                ★ {{ interest.seller.rating }}
+
+            </p>
+
+            <p>
+
+                Experience:
+                {{ interest.seller.experience }} years
+
+            </p>
+
+            <a
+                href="/worker/{{ interest.seller.id }}/"
+                class="btn btn-dark"
+            >
+
+                View Profile
+
+            </a>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <p>
+
+        No sellers interested yet.
+
+    </p>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
